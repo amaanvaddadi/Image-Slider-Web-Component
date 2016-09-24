@@ -110,21 +110,21 @@
 
 <script>
  (function () {
-  var tempDoc, indexDoc, tmpl, Element, shadowRoot;
+  var thisDoc, thatDoc, tmpl, Element, shadowRoot;
 
-  tempDoc = document.currentScript.ownerDocument;
-  indexDoc = document;
+  thisDoc = document.currentScript.ownerDocument;
+  thatDoc = document;
 
-  tmpl = tempDoc.querySelector('template');
+  tmpl = thisDoc.querySelector('template');
   Element = Object.create(HTMLElement.prototype)
 
-  Element.createdCallback = fucntion() {
+  Element.createdCallback = function () {
    shadowRoot = this.createShadowRoot();
-   var clone = indexDoc.importNod(tmpl.content, true);
+   var clone = thatDoc.importNode(tmpl.content, true);
    shadowRoot.appendChild(clone);
 
   }
-  indexDoc.registerElement('img-slider', {
+  thatDoc.registerElement('img-slider', {
    prototype: Element
   });
 
