@@ -1,0 +1,30 @@
+<template>
+
+ <style>
+
+ </style>
+</template>
+
+
+<script>
+ (function () {
+  var tempDoc, indexDoc, tmpl, Element, shadowRoot;
+
+  tempDoc = document.currentScript.ownerDocument;
+  indexDoc = document;
+
+  tmpl = tempDoc.querySelector('template');
+  Element = Object.create(HTMLElement.prototype)
+
+  Element.createdCallback = fucntion() {
+   shadowRoot = this.createShadowRoot();
+   var clone = indexDoc.importNod(tmpl.content, true);
+   shadowRoot.appendChild(clone);
+
+  }
+  indexDoc.registerElement('img-slider', {
+   prototype: Element
+  });
+
+ })()
+</script>
